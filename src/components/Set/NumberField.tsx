@@ -1,12 +1,15 @@
-import { useEffect } from "react"
-import { Flex, Button, FormLabel, HStack, Input, useNumberInput, Text, Box } from "@chakra-ui/react"
+import { Dispatch, SetStateAction, useEffect } from "react"
+import { Flex, Button, HStack, Input, useNumberInput, Text } from "@chakra-ui/react"
+import { IFormFields } from "../../utils/types"
 
 type NumberField = {
   label: string,
-  field: string
+  defaultVal?: number
+  minimum?: number
+  setFields: Dispatch<SetStateAction<IFormFields>>
 }
 
-export const NumberField = ({ label, setFields, defaultVal = 0, minimum = 0 }: any) => {
+export const NumberField = ({ label, setFields, defaultVal = 0, minimum = 0 }: NumberField) => {
   const { valueAsNumber, getInputProps, getIncrementButtonProps, getDecrementButtonProps } =
     useNumberInput({
       defaultValue: defaultVal,
